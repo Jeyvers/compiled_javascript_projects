@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidshow</title>
+</head>
+<body>
+    
+<img name = "slide" width="400" height="200">
+
+<script>
+    var i = 0;
+    var images = [];
+    var time = 3000;
+
+    // Image List
+    images[0] = 'alonetime.jpeg';
+    images[1] = 'freedom.jpg';
+    images[2] = 'lily.jpg';
+    images[3] = 'showcase.jpg';
+
+    function changeImg(){
+        document.slide.src = images[i];
+
+        if(i < images.length - 1){
+            i++
+        } else {
+            i = 0;
+        }
+
+        setTimeout("changeImg()", time);
+    }
+
+    window.onload = changeImg;
+
+</script>
+</body>
+</html>
