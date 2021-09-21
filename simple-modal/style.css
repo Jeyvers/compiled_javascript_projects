@@ -1,0 +1,90 @@
+*{
+    padding: 0;margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.button {
+    background-color: coral;
+    padding: 1em 2em;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #333;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    width: 70%;
+    box-shadow: 0 5px 8px 0
+                rgba(0, 0, 0, 0.2),
+                0 7px 20px 0
+                rgba(0, 0, 0, 0.17);
+    animation-name:modalopen;
+    animation-duration:1s;
+
+}
+.modal-header h2,
+.modal-footer h3{
+    margin: 0;
+}
+
+.modal-header {
+    background-color: coral;
+    padding: 15px;
+    color: #fff;
+
+}
+
+.modal-body {
+    padding: 10px 20px;
+}
+
+.submitBtn {
+    width: 100%;
+    border-radius: 0;
+}
+
+.closeBtn {
+    color: #fff;
+    float: right;
+    font-size: 30px;
+    margin-top: -2%;
+    
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+
+@keyframes modalopen {
+    from{opacity: 0}
+    to{opacity: 1}
+}
