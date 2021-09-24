@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Animated Icons</title>
+    <script src="https://kit.fontawesome.com/8fd5bd0ae3.js" crossorigin="anonymous"></script>
+    <style>
+        #chain, #battery, #bour-glass {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chain" class="uil"></div>
+    <br><br>
+    <div id="battery" class=""></div>
+    <br><br>
+    <div id="hour-glass" class="fa"></div>
+    
+    <!-- <i class="uil uil-link"></i>
+    <i class="uil uil-link-broken"></i> -->
+
+    <script>
+        // Break Chain Animation
+        function breakChain(){
+            let chain = document.getElementById('chain');
+            chain.classList = "uil uil-link";
+
+            setTimeout(function(){
+                chain.classList = "uil uil-link-broken";
+            }, 1000)
+        }
+
+        // Call animation
+        breakChain();
+        // Animate every two seconds
+        setInterval(breakChain, 2000);
+
+
+        // Battery Charge Animation 
+        function chargeBattery (){
+            let battery = document.getElementById('battery');
+            battery.classList = "fas fa-battery-empty";
+            setTimeout(function(){
+                battery.classList = "fas fa-battery-quarter";
+            }, 1000);
+            setTimeout(function(){
+                battery.classList = "fas fa-battery-half";
+            }, 2000);
+            setTimeout(function(){
+                battery.classList = "fas fa-battery-three-quarters";
+            }, 3000);
+            setTimeout(function(){
+                battery.classList = "fas fa-battery-full";
+            }, 4000);
+        }
+        // Run Battery Animation
+        chargeBattery();
+        // Run Animation Every 5 seconds 
+        setInterval(chargeBattery, 5000);
+        
+        // Hourglass Animation
+        function hourGlassTip (){
+            let hourGlass = document.getElementById('hour-glass');
+            hourGlass.classList = "far fa-hourglass";
+            // hourglass start
+            setTimeout(function(){
+                hourGlass.classList = "fas fa-hourglass-start";
+                // middle hourGlass
+            }, 1000)
+            setTimeout(function(){
+                hourGlass.classList = "fas fa-hourglass-end";
+                // stop hourGlass
+            }, 2000)
+        }
+        hourGlassTip();
+        setInterval(hourGlassTip, 3000);
+    </script>
+</body>
+</html>
