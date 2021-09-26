@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+    padding: 0;
+    background: #333;
+}
+
+.main-img img, 
+.imgs img{
+    width: 100%;
+}
+
+.imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+/* Fad in animation */
+@keyframes fadeIn {
+    to {
+        opacity : 1
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in 1 forwards;
+}
