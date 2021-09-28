@@ -19,8 +19,13 @@
     <!-- Word & Input -->
     <div class="row">
       <div class="col-md-6 mx-auto">
-        <select class="form-select mb-2" id="selectLevel">
-        </select>
+        <div>
+          <p>Choose difficulty level:</p>
+          <button class="btn btn-primary mb-2 " id="easyLevel"> Easy </button>
+          <button class="btn btn-secondary mb-2 " id="mediumLevel"> Medium </button>
+          <button class="btn btn-danger mb-2 " id="hardLevel"> Hard </button>
+      
+        </div>
         <p class="lead">Type The Given Word Within
           <span class="text-success" id="seconds">5</span> Seconds:</p>
         <h2 class="display-3 mb-2" id="current-word">hello</h2>
@@ -40,11 +45,11 @@
             </h3>
           </div>
           <br><br>
-          <div class="col">
+          <!-- <div class="col">
             <h3>High Score:
               <span id="highscore">0</span>
             </h3>
-          </div>
+          </div> -->
         </div>
 
         <!-- Instructions -->
