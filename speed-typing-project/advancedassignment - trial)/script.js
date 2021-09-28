@@ -139,6 +139,7 @@ function startMatch() {
         showWord(words);
         wordInput.value = '';
         score++;
+        //Since there are many ways to do this code things, try figure out a different way to design this speed typing game in a different and more convenient way. Make research, watch more videos and improve the functionality in the way you honestly want to. The highscores can have a different function that'll call them, for saving to localstorage and for comparing the score values. Can a music functionality that makes a sound when game overr. 
         if (score > highScoreE){
             highScoreE = score;
         }
@@ -181,3 +182,7 @@ function checkStatusEasy(){
     }
 }
 
+// High Score Trial 
+function highScores() {
+
+} 
