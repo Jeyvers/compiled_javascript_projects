@@ -1,21 +1,35 @@
 window.addEventListener('DOMContentLoaded', init)
 
 // Available levels
-levels = {
-    easy: 5,
-    medium: 3,
-    hard: 2
-  };
+// levels = {
+//     easy: 5,
+//     medium: 3,
+//     hard: 2
+//   };
 
   
 
-//   To change level
-const currentLevel = levels.easy;
 
-// Global variables
-let time = currentLevel,
-score = 0,
-isPlaying;
+
+levels = [
+    {
+        name: "Select Level"
+    },
+    {
+        name: "Easy",
+        value: "5"
+    },
+    {
+        name: "Medium",
+        value: "3"
+    },
+    {
+        name: "Hard",
+        value: "2"
+    }
+];
+
+
 
 
 // DOM Elements 
@@ -25,7 +39,8 @@ const scoreDisplay = document.querySelector('#score');
 const timeDisplay = document.querySelector('#time');
 const message = document.querySelector('#message');
 const seconds = document.querySelector('#seconds');
-const selectLevel = document.querySelector('#selectLevel');
+let selectLevel = document.querySelector('#selectLevel');
+
 
 
 const words = [
@@ -56,10 +71,33 @@ const words = [
     'definition'
   ];
 
+levels.forEach(level => {
+    let option = document.createElement('option');
+    option.value = level.value;
+    option.textContent = level.name;
+    selectLevel.appendChild(option);
+});
+
+// selectLevel.addEventListener('change', () => {const currentLevel = this.value})
   
+//   To change level
+
+const currentLevel = selectLevel.value;
+
+
+console.log(currentLevel)
+
+// Global variables
+let time = currentLevel,
+score = 0,
+isPlaying;
+
+
 
 //   Initialize game
 function init() {
+   
+
     // Show number of seconds in UI
     seconds.innerHTML = currentLevel; 
 
@@ -130,3 +168,5 @@ function checkStatus(){
         score = -1;
     }
 }
+
+
