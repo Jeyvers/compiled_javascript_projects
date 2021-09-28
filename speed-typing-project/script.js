@@ -85,6 +85,9 @@ const words = [
 
 //   Initialize game
 function init() {
+    currentLevel = levels.easy;
+    seconds.innerHTML = currentLevel; 
+    time = currentLevel;
 
     easyLevel.addEventListener('click', () => {
        console.log(levels.easy);
@@ -122,6 +125,9 @@ function init() {
 function showWord(words) {
     // Generate random array index
     const randIndex = Math.floor(Math.random() * words.length);
+
+    const trialone = Math.ceil(Math.random() * words.length);
+    console.log(trialone)
 
     currentWord.innerHTML = words[randIndex];
 }
