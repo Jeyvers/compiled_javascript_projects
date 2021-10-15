@@ -1,54 +1,91 @@
+class Result {
+    constructor(subject, score, grade, remark) {
+        this.subject = subject;
+        this.score = score;
+        this.grade = grade;
+        this.remark = remark;
+    }
+}
 
-        const gradeForm = document.getElementById('grade-form');
-        const subjectInput = document.getElementById('subject');
-        const scoreInput = document.getElementById('score');
-        let result = document.getElementById('result-list');
-        let table = document.getElementById('table');
-        result.style.visibility = "none";
+// Tasks
+class UI {
+    static showResults() {
+        const results = Store.getResults();
 
+        results.forEach((result) => UI.addResultToList(result));
+    }
 
-        function getGradeInput() {
-            let grade = scoreInput.value;
-                return grade;
+    static addResultToList(result) {
+        const list = document.querySelector('#result-list');
+
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${result.subject}</td>
+            <td>${result.score}</td>
+            <td>${result.grade}</td>
+            <td>${result.remark}</td>
+        `;
+
+        list.appendChild(row);
+    }
+}
+
+// Storage
+class Store {
+    static getResults(){
+        let results;
+        if(localStorage.getItem('results') === null) {
+            results = []; 
+
+        } else {
+            results = JSON.parse(localStorage.getItem('results'));
         }
+        return results;
+    }
 
-        function getSubject() {
-            let subject = subjectInput.value;
-                return subject;
-        }
+    static addResults(result) {
+        const results = Store.getResults();
+        results.push(result);
+        localStorage.setItem('result', JSON.stringify(results));
+    }
+}
 
-        function getScore(e) {
-            e.preventDefault();
-            const grade = getGradeInput();
-            const subject = getSubject();
+// Show results
+document.addEventListener('DOMContentLoaded', UI.showResults);
 
-            if (grade != '' && subject != '') {
-               let tr = document.createElement('tr');
-                if (grade >= 80 ) {
-                    tr.innerHTML = `
-                    <td>${subject}</td>
-                    <td>${grade}</td>
-                    <td>A</td>
-                    <td>Excellent</td>
-                    `;
-                }
-                table.appendChild(tr)
+// Add result 
+document.querySelector('#grade-form').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-                // if(localStorage.getItem(subject) != subject){
-                // localStorage.setItem('subject', subject)
-                // }
-            }
-        }
+    const subject = document.querySelector('#subject').value;
+    const score = document.querySelector('#score').value;
+    let grade;
+    let remark;
 
-        // function getItem() {
-        //     localStorage.getItem('subject');
-        // }
-
-        subjectInput.addEventListener('input', getSubject)
-        scoreInput.addEventListener('input', getGradeInput);
-        gradeForm.addEventListener('submit', getScore);
-
-        // getItem()
-
-
+    if(score >= 70) {
+        grade = 'A';
+        remark = 'Excellent';
+    } else if (score >= 60) {
+        grade = 'B';
+        remark = 'Very Good';
+    } else if (score >= 50) {
+        grade = 'C';
+        remark = 'Good';
+    } else if (score >= 40) {
+        grade = 'D';
+        remark = 'Pass';
+    } else if (score <= 39) {
+        grade = 'F9';
+        remark = 'Fail';
+    }
     
+    // Instantiate result
+    const result = new Result(subject, score, grade, remark);
+    
+    // Add result to UI
+    UI.addResultToList(result);
+
+    Store.addResults(result);
+
+});
