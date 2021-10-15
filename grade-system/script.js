@@ -29,6 +29,11 @@ class UI {
 
         list.appendChild(row);
     }
+
+    static clearFields() {
+        document.querySelector('#subject').value = '';
+        document.querySelector('#score').value = '';
+    } 
 }
 
 // Storage
@@ -76,16 +81,25 @@ document.querySelector('#grade-form').addEventListener('submit', (e) => {
         grade = 'D';
         remark = 'Pass';
     } else if (score <= 39) {
-        grade = 'F9';
+        grade = 'F';
         remark = 'Fail';
     }
     
-    // Instantiate result
-    const result = new Result(subject, score, grade, remark);
+    if(subject === '' || score === '') {
+        alert('Please fill in all fields')
+    } else {
+
     
-    // Add result to UI
-    UI.addResultToList(result);
 
-    Store.addResults(result);
+        // Instantiate result
+        const result = new Result(subject, score, grade, remark);
+        
+        // Add result to UI
+        UI.addResultToList(result);
 
+        Store.addResults(result);
+
+        UI.clearFields();              
+
+    }
 });
