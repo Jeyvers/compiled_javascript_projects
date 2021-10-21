@@ -54,7 +54,7 @@ body {
 }
 
 .music-container.play .img-container img {
-  /* animation-play-state: running; */
+  animation-play-state: running;
 }
 
 @keyframes rotate {
@@ -101,7 +101,7 @@ body {
   left: 20px;
   width: calc(100% - 40px);
   padding: 10px 10px 10px 150px;
-  /* opacity: 0; */
+  opacity: 0;
   transform: translateY(0%);
   transition: transform 0.3s ease-in, opacity 0.3s ease-in;
 }
