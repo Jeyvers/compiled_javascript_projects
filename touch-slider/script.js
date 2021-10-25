@@ -1,6 +1,6 @@
 const slider = document.querySelector('.slider-container'),
 slides = Array.from(document.querySelectorAll('.slide'));
-
+console.log(slides)
 let isDragging = false,
 startPos = 0,
 currentTranslate = 0,
