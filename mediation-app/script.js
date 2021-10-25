@@ -2,7 +2,7 @@ const app = () => {
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
     const movingOutline = document.querySelector('.moving-outline circle');
-    const video = document.querySelector('.vid-container video');
+    const video = document.querySelector('#video');
 
     // Sounds
     const sounds = document.querySelectorAll('.sound-picker button');
@@ -46,11 +46,11 @@ const app = () => {
         if (song.paused) {
             song.play();
             video.play();
-            play.src = './svg/pause.svg';
+            play.src = '../svg/pause.svg';
         } else {
             song.pause();
             video.pause();
-            play.src = './svg/play.svg';
+            play.src = '../svg/play.svg';
 
         }
     }
@@ -70,7 +70,7 @@ const app = () => {
         if(currentTime >= fakeDuration) {
             song.pause();
             video.pause();
-            play.src = './svg/play.svg';
+            play.src = '../svg/play.svg';
             song.currentTime = 0;
         }
     }
