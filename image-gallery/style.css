@@ -21,7 +21,7 @@ body {
     gap: 5px;
 }
 
-/* Fad in animation */
+/* Fade in animation */
 @keyframes fadeIn {
     to {
         opacity : 1
