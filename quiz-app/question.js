@@ -28,7 +28,7 @@ let questions = [
         question: "What does PHP stand for?",
         answer: "HyperText Preprocessor",
         options: [
-            "Hypertext Preprocessor",
+            "HyperText Preprocessor",
             "HyperText Programming",
             "HyperText Preprogramming",
             "Hometext Preprocessor"
