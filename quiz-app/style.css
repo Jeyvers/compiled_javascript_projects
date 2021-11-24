@@ -180,6 +180,15 @@ body {
   user-select: none;
 }
 
+.quiz-box header .time-line {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 3px;
+  /* width: 50%; */
+  background-color: #007bff;
+}
+
 .quiz-box section {
   padding: 25px 30px 20px 30px;
   background: #fff;
@@ -281,6 +290,7 @@ footer .total-que span p {
 }
 
 footer .next-btn {
+  display: none;
   height: 40px;
   padding: 0 13px;
   font-size: 18px;
