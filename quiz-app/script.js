@@ -1,24 +1,27 @@
 // DOM Elements 
 const startBtn = document.querySelector('.start-btn')
 const infoBox = document.querySelector('.info-box')
-const quitBtn = infoBox.querySelector('.buttons .quit')
 const contBtn = infoBox.querySelector('.buttons .restart')
 const quizBox = document.querySelector('.quiz-box')
 const nextBtn = document.querySelector('.next-btn');
 const resultBox = document.querySelector('.result-box');
 const restartBtn = infoBox.querySelector('.buttons .restart')
 const quitBtn = infoBox.querySelector('.buttons .quit')
+const quitQuiz = resultBox.querySelector('.buttons .quit');
+const restartQuiz = resultBox.querySelector('.buttons .restart');
 const totalQue = document.querySelector('.total-que');
 const queText = document.querySelector(".que-text");
 const optionList = document.querySelector(".option-list");
 const timeCount = quizBox.querySelector(".timer-sec");
 const timeLine = quizBox.querySelector(".time-line");
+const scoreText = resultBox.querySelector('.score-text');
 let tickIcon = `<div class="icon tick"><i class="fa fa-check"></i></div>`;
 let crossIcon = ` <div class="icon cross"><i class="fa fa-times"></i></div>`;
 let queCont = 0;
 let counter;
 let counterLine;
 let timeValue = 9;
+let userScore = 0;
 // Start
 startBtn.onclick = () => {
     infoBox.classList.add('active-info')
@@ -54,6 +57,13 @@ nextBtn.onclick = () => {
     }
 }
 
+quitQuiz.onclick = () => {
+    window.location.reload();
+}
+
+restartQuiz.onclick = () => {
+    window.location.reload();
+}
 
 
 // getting questions and options from array 
@@ -86,6 +96,8 @@ function optionSelected(answer) {
     if(userAns == correctAns) {
         answer.classList.add('correct');
         answer.insertAdjacentHTML("beforeend", tickIcon)
+        userScore += 1;
+        console.log(userScore);
     } else {
         answer.classList.add('incorrect');
         answer.insertAdjacentHTML("beforeend", crossIcon)
@@ -119,7 +131,20 @@ function startTimer(time) {
         }
         if(time < 0) {
             clearInterval(counter);
-            timeCount.textContent = 0;
+            timeCount.textContent = 0;  
+            let correctAns = questions[queCont].answer;
+            let allOptions = optionList.children.length;
+            for(let i = 0; i < allOptions; i++) {
+                if(optionList.children[i].textContent == correctAns) {
+                    optionList.children[i].setAttribute('class', 'option correct')
+                    optionList.children[i].insertAdjacentHTML("beforeend", tickIcon)
+                }
+              }   
+              for(let i = 0; i < allOptions; i++) {
+                   optionList.children[i].classList.add('disabled');
+                 }
+                nextBtn.style.display = "block";
+
         }
     } 
 }
@@ -139,4 +164,5 @@ function showResultBox() {
     infoBox.classList.remove('active-info');
     quizBox.classList.remove('active-quiz');
     resultBox.classList.add('active-result');
+    scoreText.innerHTML = ` <span>You got <p>${userScore}</p> out of <p>${questions.length}</p></span>`
 }

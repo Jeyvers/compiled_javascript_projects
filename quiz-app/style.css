@@ -25,7 +25,8 @@ body {
 }
 
 .info-box.active-info,
-.quiz-box.active-quiz {
+.quiz-box.active-quiz,
+.result-box.active-result {
   z-index: 5;
   opacity: 1;
   pointer-events: auto;
