@@ -11,12 +11,24 @@ drawWidth = '2',
 isDrawing = false;
 
 
-function start () {
+function start(e) {
     isDrawing = true;
-    context.beginPath();
-    context.moveTo(e.clientX )
+    context.beginPath(); // Prepare canvas to do something
+    context.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop) // Coordinates from event
+    e.preventDefault();
+
 }
 
+function draw(e) {
+    if(isDrawing) {
+        context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        context.strokeStyle = drawColor;
+        context.lineWidth = drawWidth;
+        context.lineCap = 'round';
+        context.lineJoin = 'round';
+        context.stroke();
+    }
+}
 
 canvas.addEventListener('touchstart', start, false);
 canvas.addEventListener('touchmove', draw, false);
