@@ -3,13 +3,17 @@ canvas.width = window.innerWidth - 60;
 canvas.height = 400;
 const colorFields = document.querySelectorAll('.color-field');
 
-let context = canvas.getContext('2d'); // Two dimesion context. Explain?
-context.fillStyle = 'white'; 
-context.fillRect(0, 0, canvas.width, canvas.height);
-
 let drawColor = 'black',
 drawWidth = '2',
+startBcg = 'white';
 isDrawing = false;
+
+let context = canvas.getContext('2d'); // Two dimesion context. Explain?
+context.fillStyle = startBcg; 
+context.fillRect(0, 0, canvas.width, canvas.height);
+let restoreArr = [];
+let index = -1;
+
 
 
 function start(e) {
@@ -39,16 +43,41 @@ function stop(e) {
     }
 
     e.preventDefault();
+
+    if(e.type != 'mouseout') {
+    restoreArr.push(context.getImageData(0, 0, canvas.width, canvas.height));
+    index += 1;
+    }
 } 
 
 function changeColor(element) {
         drawColor = element.style.backgroundColor;
     }
     
-    for(let i = 0; i < colorFields.length; i++) {
-        colorFields[i].setAttribute("onclick", "changeColor(this)");
+    
+function clearCanvas() {
+        context.fillStyle = startBcg;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        restoreArr = [];
+        index = -1;
     }
 
+function undoLast() {
+    if( index <= 0) {
+        clearCanvas();
+    } else {
+        index -= 1;
+        restoreArr.pop();
+        context.putImageData(restoreArr[index], 0, 0) 
+    } 
+}    
+
+
+ for(let i = 0; i < colorFields.length; i++) {
+        colorFields[i].setAttribute("onclick", "changeColor(this)");
+    }
 canvas.addEventListener('touchstart', start, false);
 canvas.addEventListener('touchmove', draw, false);
 canvas.addEventListener('mousedown', start, false);
