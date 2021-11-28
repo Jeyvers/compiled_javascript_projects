@@ -16,22 +16,6 @@ canvas {
   cursor: pointer;
 }
 
-.color-field:first-of-type {
-  background-color: red;
-}
-
-.color-field:nth-of-type(2) {
-  background-color: green;
-}
-
-.color-field:nth-of-type(3) {
-  background-color: blue;
-}
-
-.color-field:nth-of-type(4) {
-  background-color: yellow;
-}
-
 .tools {
   display: flex;
   justify-content: space-evenly;
